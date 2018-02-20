@@ -33,13 +33,22 @@ public class LoanCalculator{
     }
 
     public static void flatInterest() {
-       Scanner scan = new Scanner(system.in);
-       int n = scan.nextInt
-        System.out.println("Enter your principle loan amount: ");
-        System.out.println("Enter your interest rate: ");
-        System.out.println("Enter your loan term: ");
+        Scanner scan;
+        scan = new Scanner(System.in);
+        System.out.print("Enter your principle loan amount: ");
+        loanAmt = scan.nextInt();
+        System.out.print("Enter your loan term in years: ");
+        loanTerm = scan.nextInt();
+        System.out.print("Enter your interest rate: ");
+        double InterestPercentage = scan.nextDouble();
+        interestRate = InterestPercentage * 10;
         double FlatInt = loanAmt * loanTerm * interestRate;
-        System.out.println(FlatInt);
+        double InterestOverTerm = loanAmt * interestRate;
+        System.out.println("Original Loan Amount:" + loanAmt);
+        System.out.println("Loan Term:" + loanTerm);
+        System.out.println("Interest Rate:" + InterestPercentage);
+        System.out.println("Interest over term:" + InterestOverTerm);
+        System.out.println("Total cost of loan:" + FlatInt);
         //Delete this once you implement the function
         //Calculate flat interest and print it out here
     }
