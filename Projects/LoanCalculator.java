@@ -7,6 +7,7 @@ public class LoanCalculator{
     public static double loanAmt = -1;
     public static int loanTerm = -1;
     public static double interestRate = -1;
+    public static double InterestPercentage = -1;
 
     public static void main(String[] args) {
         //Read in the loan calculation mode
@@ -17,6 +18,14 @@ public class LoanCalculator{
             if(scan.hasNextInt()) { //Check if input provided is a valid integer
                 mode = scan.nextInt();
                 if(0 < mode && mode < 4) { //Check if input provided is 1, 2, or 3
+            scan = new Scanner(System.in);
+            System.out.print("Enter your principle loan amount: ");
+            loanAmt = scan.nextInt();
+            System.out.print("Enter your loan term in years: ");
+            loanTerm = scan.nextInt();
+            System.out.print("Enter your interest rate: ");
+            InterestPercentage = scan.nextDouble();
+            interestRate = InterestPercentage / 100;
                     break; //Valid input has been provided. Break out of the while loop
                 }
             }
@@ -33,24 +42,13 @@ public class LoanCalculator{
     }
 
     public static void flatInterest() {
-        Scanner scan;
-        scan = new Scanner(System.in);
-        System.out.print("Enter your principle loan amount: ");
-        loanAmt = scan.nextInt();
-        System.out.print("Enter your loan term in years: ");
-        loanTerm = scan.nextInt();
-        System.out.print("Enter your interest rate: ");
-        double InterestPercentage = scan.nextDouble();
-        interestRate = InterestPercentage * 10;
         double FlatInt = loanAmt * loanTerm * interestRate;
         double InterestOverTerm = loanAmt * interestRate;
-        System.out.println("Original Loan Amount:" + loanAmt);
-        System.out.println("Loan Term:" + loanTerm);
-        System.out.println("Interest Rate:" + InterestPercentage);
-        System.out.println("Interest over term:" + InterestOverTerm);
-        System.out.println("Total cost of loan:" + FlatInt);
-        //Delete this once you implement the function
-        //Calculate flat interest and print it out here
+        System.out.println("Original Loan Amount: $" + loanAmt);
+        System.out.println("Loan Term: " + loanTerm);
+        System.out.println("Interest Rate: " + interestRate + "%");
+        System.out.println("Interest over term: $" + InterestOverTerm);
+        System.out.println("Total cost of loan: $" + FlatInt);
     }
 
     public static void printModeStatement() {
