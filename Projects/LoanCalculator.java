@@ -17,27 +17,49 @@ public class LoanCalculator{
             printModeStatement(); //Call a function to print our mode selection statement
             if(scan.hasNextInt()) { //Check if input provided is a valid integer
                 mode = scan.nextInt();
-                if(0 < mode && mode < 4) { //Check if input provided is 1, 2, or 3
-            scan = new Scanner(System.in);
-            System.out.print("Enter your principle loan amount: ");
-            loanAmt = scan.nextInt();
-            System.out.print("Enter your loan term in years: ");
-            loanTerm = scan.nextInt();
-            System.out.print("Enter your interest rate: ");
-            InterestPercentage = scan.nextDouble();
-            interestRate = InterestPercentage / 100;
+                if(0 < mode && mode < 4) { //Check if input provided is 1, 2, or 3           
                     break; //Valid input has been provided. Break out of the while loop
                 }
             }
             //If it reaches here, the input was invalid. Loop again.
         }
-        System.out.println("You selected mode " + mode);
+         System.out.println("You selected mode " + mode);
+
+        while(true) {
+            scan = new Scanner(System.in);
+            System.out.print("Enter your principle loan amount: ");
+            if(scan.hasNextDouble()) {
+                loanAmt = scan.nextDouble();
+                break;
+            }
+        }
+        while(true) {
+            scan = new Scanner(System.in);
+            System.out.print ("Enter your loan term in years: ");
+            if(scan.hasNextInt()){
+                loanTerm = scan.nextInt();
+                break;
+            }
+        }
+        while(true) {
+            scan = new Scanner(System.in);
+            System.out.print ("Enter your interest rate: ");
+            if(scan.hasNextDouble()){
+                InterestPercentage = scan.nextDouble();
+                break;
+            }
+        }
+        
+        interestRate = InterestPercentage / 100;
 
         if(mode == 1) {
             flatInterest();
         }
-        else {
-            System.out.println("Other modes not yet supported."); //Replace this with calls to your appropriate functions            
+        if(mode == 2){
+            compoundingNoPayments();
+        }
+        if(mode == 3){
+            compoundingWithPayments();
         }
     }
 
@@ -45,10 +67,18 @@ public class LoanCalculator{
         double FlatInt = loanAmt * loanTerm * interestRate;
         double InterestOverTerm = loanAmt * interestRate;
         System.out.println("Original Loan Amount: $" + loanAmt);
-        System.out.println("Loan Term: " + loanTerm);
-        System.out.println("Interest Rate: " + interestRate + "%");
+        System.out.println("Loan Term: " + loanTerm + " years");
+        System.out.println("Interest Rate: " + InterestPercentage + "%");
         System.out.println("Interest over term: $" + InterestOverTerm);
         System.out.println("Total cost of loan: $" + FlatInt);
+    }
+
+    public static void compoundingNoPayments() {
+
+    }
+
+    public static void compoundingWithPayments() {
+        
     }
 
     public static void printModeStatement() {
