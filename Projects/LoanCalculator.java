@@ -74,11 +74,26 @@ public class LoanCalculator{
     }
 
     public static void compoundingNoPayments() {
-
+        double MonthsRemaining = loanTerm * 12;
+        while( MonthsRemaining > 0){
+            double loanTotal = loanAmt * Math.pow(1 + (interestRate / 12), MonthsRemaining);
+            double Interest = loanTotal - loanAmt;
+            System.out.println("Original Loan Amount: $" + loanAmt);
+            System.out.println("Loan Term: " + loanTerm + " years");
+            System.out.println("Interest Rate: " + InterestPercentage + "%");
+            System.out.println("Accumulated Interest: $" + Interest);
+            System.out.println("Total Loan Amount: $" + loanTotal);
+            break;
+        }
     }
-
     public static void compoundingWithPayments() {
-        
+        double MonthsRemaining = loanTerm * 12;
+        double MonthlyRate = interestRate / 12;
+        double Interest = outstandingBalance * (interestRate / 12);
+        double monthlyPayment = 1 + loanAmt * (MonthlyRate / (1 - Math.pow((1 + MonthlyRate), (loanTerm * -12))));
+        double outstandingBalance = loanTotal % monthlyPayment;
+        double loanTotal = ( loanAmt * Math.pow((1 + MonthlyRate), MonthsRemaining)) + ((monthlyPayment * (Math.pow((1 + MonthlyRate), MonthsRemaining)-1)) / MonthlyRate);
+        double accumulatedInterest = loanTotal - loanAmt;
     }
 
     public static void printModeStatement() {
