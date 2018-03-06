@@ -36,16 +36,16 @@ class Plinko {
 
 
 
-    public static int runOddRow(int position) {
-       
- 
+
+    public static int PrintOddRow(int position) {
+
         //Modify the position.
         //Print the visualization of the row if it's single disc mode.
 
         return position;
-    }
-
-    public static int runEvenRow(int position) {
+        }
+    
+    public static int PrintEvenRow(int position) {
         //Modify the position.
         //Print the visualization of the row if it's single disc mode.
 
@@ -65,13 +65,29 @@ class Plinko {
         );
     }
     
+
+
     public static void Single_Disc() {
         Scanner scan;
         while(true){
         scan = new Scanner(System.in);
-            System.out.println("What starting position would you like the ball to be in? (1-8): ");
+            System.out.print("What starting position would you like the ball to be in? (1-8): ");
             if(scan.hasNextInt()){
                 position = scan.nextInt();
+                
+            for(int i = 0; i <= 16; i++) {
+                if(position == i) {
+                 System.out.print("O");
+                     }
+                else if(isEven(i)) {
+                    System.out.print(" ");
+                     }
+                else {
+                    System.out.print(".");
+                     }
+                }
+                System.out.print("\n");
+       
             }
         }
    }
