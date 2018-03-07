@@ -18,8 +18,35 @@ class Plinko {
             printModeStatement();
             if(scan.hasNextInt()) {
                 mode = scan.nextInt();
+                
                 if(mode == SINGLE_DISC) {
-                    Single_Disc();
+                    int position;       
+                    while(true){
+                    scan = new Scanner(System.in);
+                        System.out.print("What starting position would you like the ball to be in? (1-8): ");
+                        if(scan.hasNextInt()){
+                            position = scan.nextInt();
+                                for(int i = 0; i <= 16; i++){
+                                    if (position == 0){
+                                        position++;
+                                    }
+                                    else if(position == 9){
+                                        position --;
+                                    }                                       
+                                    if(Math.random() > .5) {
+                                        position++;
+                                    } else {
+                                        position--;
+                                    }                                   
+                                    if(isEven(i)) {
+                                    PrintEvenRow(i);
+                                    }
+                                    else {
+                                    PrintOddRow(i);
+                                    }                        
+                            }      
+                        } 
+                    }
                 }
                 else if(mode == MULTI_DISC) {
                     System.out.println("Mode not yet implemented");
@@ -29,6 +56,7 @@ class Plinko {
                     break;
                 } else {
                     continue;
+
                 }
             }
         }
@@ -36,19 +64,39 @@ class Plinko {
 
 
 
-
     public static int PrintOddRow(int position) {
 
-        //Modify the position.
-        //Print the visualization of the row if it's single disc mode.
-
-        return position;
+        for(int i = 0; i <= 16; i++) {
+            if(position == i) {
+                System.out.print("O");
+            }
+            else if(isEven(i)) {
+                System.out.print(".");
+            }
+            else {
+                System.out.print(" ");
+            }
         }
+        System.out.print("\n");
+            return position;
+        }
+            return position;
+            }
     
     public static int PrintEvenRow(int position) {
-        //Modify the position.
-        //Print the visualization of the row if it's single disc mode.
-
+    
+     for(int i = 0; i <= 16; i++) {
+        if(position == i) {
+            System.out.print("O");
+        }
+        else if(isEven(i)) {
+            System.out.print(" ");
+        }
+        else {
+            System.out.print(".");
+        }
+    }
+    System.out.print("\n");
         return position;
     }
 
@@ -64,31 +112,4 @@ class Plinko {
             + "\t(3) Quit\n"
         );
     }
-    
-
-
-    public static void Single_Disc() {
-        Scanner scan;
-        while(true){
-        scan = new Scanner(System.in);
-            System.out.print("What starting position would you like the ball to be in? (1-8): ");
-            if(scan.hasNextInt()){
-                position = scan.nextInt();
-                
-            for(int i = 0; i <= 16; i++) {
-                if(position == i) {
-                 System.out.print("O");
-                     }
-                else if(isEven(i)) {
-                    System.out.print(" ");
-                     }
-                else {
-                    System.out.print(".");
-                     }
-                }
-                System.out.print("\n");
-       
-            }
-        }
-   }
 }
