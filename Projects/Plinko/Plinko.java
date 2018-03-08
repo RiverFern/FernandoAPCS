@@ -9,6 +9,8 @@ class Plinko {
 
     public static int mode = -1;
 
+    public static int position = -1;
+
     public static void main(String[] args) {
         Scanner scan;
         while(true) {
@@ -19,35 +21,37 @@ class Plinko {
             if(scan.hasNextInt()) {
                 mode = scan.nextInt();
                 
-                if(mode == SINGLE_DISC) {
-                    int position;       
+                if(mode == SINGLE_DISC) {     
                     while(true){
                     scan = new Scanner(System.in);
-                        System.out.print("What starting position would you like the ball to be in? (1-8): ");
+                        System.out.print("What starting position would you like the ball to be in? (0-8): ");
                         if(scan.hasNextInt()){
                             position = scan.nextInt();
-                                for(int i = 0; i <= 16; i++){
-                                    if (position == 0){
-                                        position++;
-                                    }
-                                    else if(position == 9){
+                            position = position * 2;  
+                                PrintOddRow(position);
+                                for(int i = 0; i <= 11; i++){
+                                    if(position == 16 ){
                                         position --;
                                     }                                       
-                                    if(Math.random() > .5) {
+                                    else if (position == 0){
                                         position++;
-                                    } else {
-                                        position--;
-                                    }                                   
-                                    if(isEven(i)) {
-                                    PrintEvenRow(i);
+                                    } 
+                                    if(Math.random() > .5){
+                                        position++;
                                     }
-                                    else {
-                                    PrintOddRow(i);
-                                    }                        
-                            }      
-                        } 
+                                    else{
+                                        position--;
+                                    }                                  
+                                    if(isEven(i)) {
+                                    PrintEvenRow(position);
+                                    }
+                                    else{
+                                    PrintOddRow(position);
+                                    }       
+                                } 
+                            } 
+                        }
                     }
-                }
                 else if(mode == MULTI_DISC) {
                     System.out.println("Mode not yet implemented");
                 }
@@ -65,43 +69,42 @@ class Plinko {
 
 
     public static int PrintOddRow(int position) {
-
+        for(int i = 0; i <= 16; i++) {
+            if(position == i) {
+                System.out.print("O");
+            }
+            else if(isOdd(i)) {
+                System.out.print(" ");
+            }
+            else {
+                System.out.print(".");
+            }
+        }
+        System.out.print("\n");
+            return position;
+    }
+    
+    public static int PrintEvenRow(int position) {
         for(int i = 0; i <= 16; i++) {
             if(position == i) {
                 System.out.print("O");
             }
             else if(isEven(i)) {
-                System.out.print(".");
+                System.out.print(" ");
             }
             else {
-                System.out.print(" ");
+                System.out.print(".");
             }
         }
         System.out.print("\n");
             return position;
-        }
-            return position;
-            }
-    
-    public static int PrintEvenRow(int position) {
-    
-     for(int i = 0; i <= 16; i++) {
-        if(position == i) {
-            System.out.print("O");
-        }
-        else if(isEven(i)) {
-            System.out.print(" ");
-        }
-        else {
-            System.out.print(".");
-        }
-    }
-    System.out.print("\n");
-        return position;
     }
 
-    public static Boolean isEven(int x) {
-        return x % 2 == 0;
+    public static Boolean isEven(int i) {
+        return i % 2 == 0;
+    }
+    public static Boolean isOdd(int i) {
+        return i % 2 == 1;
     }
 
     public static void printModeStatement() {
