@@ -49,6 +49,8 @@ class Plinko {
                                     PrintOddRow(position);
                                     }       
                                 } 
+                            System.out.println("You landed on position " + position + ".");
+                            break;
                             } 
                         }
                     }
