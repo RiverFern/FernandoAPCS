@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 class Plinko {
@@ -8,8 +9,10 @@ class Plinko {
     public static final int[] VALUES = {1, 3, 2, 0, 5, 0, 2, 3, 1};
 
     public static int mode = -1;
+    public static int score = -1;
 
     public static int position = -1;
+    public static int numbOfDisc = -1;
 
     public static void main(String[] args) {
         Scanner scan;
@@ -27,36 +30,72 @@ class Plinko {
                         System.out.print("What starting position would you like the ball to be in? (0-8): ");
                         if(scan.hasNextInt()){
                             position = scan.nextInt();
-                            position = position * 2;  
-                                PrintOddRow(position);
-                                for(int i = 0; i <= 11; i++){
-                                    if(position == 16 ){
-                                        position --;
-                                    }                                       
-                                    else if (position == 0){
-                                        position++;
-                                    } 
-                                    if(Math.random() > .5){
-                                        position++;
-                                    }
-                                    else{
-                                        position--;
-                                    }                                  
-                                    if(isEven(i)) {
-                                    PrintEvenRow(position);
-                                    }
-                                    else{
+                            if(position <= 9){
+                                position = position * 2;  
                                     PrintOddRow(position);
-                                    }       
-                                } 
-                            System.out.println("You landed on position " + position + ".");
-                            break;
+                                    for(int i = 0; i <= 11; i++){
+                                        if(position == 16 ){
+                                            position --;
+                                        }                                       
+                                        else if (position == 0){
+                                            position++;
+                                        } 
+                                        else if(Math.random() > .5){
+                                            position++;
+                                        }
+                                        else{
+                                            position--;
+                                        }                                  
+                                        if(isEven(i)) {
+                                        PrintEvenRow(position);
+                                        }
+                                        else{
+                                        PrintOddRow(position);
+                                        }       
+                                    }
+                                System.out.println("You landed on position " + (position / 2) + " and got " + VALUES[position/2] + " points.");
+                                }
                             } 
+                        break;
                         }
                     }
                 else if(mode == MULTI_DISC) {
-                    System.out.println("Mode not yet implemented");
-                }
+                int[] DISCPOSITION = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+                    while(true){
+                        scan = new Scanner(System.in);
+                            System.out.print("What starting position would you like the ball to be in? (0-8): ");
+                            if(scan.hasNextInt()){
+                                position = scan.nextInt();
+                                if(position <= 9){
+                                System.out.print("How many discs would you like to drop?: ");
+                                numbOfDisc = scan.nextInt();
+                                position = position * 2;  
+                                    for(int i = 1; i <= numbOfDisc; i++){
+                                        if(position == 16 ){
+                                            position --;
+                                        }                                       
+                                        else if (position == 0){
+                                            position++;
+                                        } 
+                                        else if(Math.random() > .5){
+                                            position++;
+                                        }
+                                        else{
+                                            position--;
+                                        }                                  
+                                        DISCPOSITION[position/2]++;
+                                    }      
+                                }
+                                for(int j = 0; j <= 8; j++){
+                                System.out.println("Number of disc(s) landed on position " + j + ": "+ DISCPOSITION[j]);
+                                }
+                            }
+                            score = (VALUES[0] * DISCPOSITION[0]) + (VALUES[1] * DISCPOSITION[1]) + (VALUES[2] * DISCPOSITION[2]) + (VALUES[3] * DISCPOSITION[3]) + (VALUES[4] * DISCPOSITION[4]) + (VALUES[5] * DISCPOSITION[5]) + (VALUES[6] * DISCPOSITION[6]) + (VALUES[7] * DISCPOSITION[7]) + (VALUES[8] * DISCPOSITION[8]);
+                            System.out.println("Score: " + score);
+                            break;
+                            }   
+                        }
+
                 else if(mode == TERMINATE) {
                     System.out.println("Goodbye");
                     break;
@@ -68,9 +107,8 @@ class Plinko {
         }
     }
 
-
-
     public static int PrintOddRow(int position) {
+        System.out.print(" |");
         for(int i = 0; i <= 16; i++) {
             if(position == i) {
                 System.out.print("O");
@@ -82,11 +120,13 @@ class Plinko {
                 System.out.print(".");
             }
         }
+        System.out.print("|");
         System.out.print("\n");
             return position;
     }
     
     public static int PrintEvenRow(int position) {
+        System.out.print(" |");
         for(int i = 0; i <= 16; i++) {
             if(position == i) {
                 System.out.print("O");
@@ -98,6 +138,7 @@ class Plinko {
                 System.out.print(".");
             }
         }
+        System.out.print("|");
         System.out.print("\n");
             return position;
     }
