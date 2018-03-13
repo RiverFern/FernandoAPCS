@@ -32,7 +32,7 @@ class Plinko {
                             position = scan.nextInt();
                             if(position <= 9){
                                 position = position * 2;  
-                                    PrintOddRow(position);
+                                    PrintEvenRow(position);
                                     for(int i = 0; i <= 11; i++){
                                         if(position == 16 ){
                                             position --;
@@ -47,10 +47,10 @@ class Plinko {
                                             position--;
                                         }                                  
                                         if(isEven(i)) {
-                                        PrintEvenRow(position);
+                                        PrintOddRow(position);
                                         }
                                         else{
-                                        PrintOddRow(position);
+                                        PrintEvenRow(position);
                                         }       
                                     }
                                 System.out.println("You landed on position " + (position / 2) + " and got " + VALUES[position/2] + " points.");

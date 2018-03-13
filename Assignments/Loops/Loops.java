@@ -122,7 +122,7 @@ public static void main(String[] args) {
     while(i < 4){
         Boolean shouldLoop = true;
         int i = 0;
-        System.out.println("Enter a valid interger: ")
+        System.out.println("Enter a valid interger: ");
         scan = new Scanner(System.in);
         if(scan.hasNextDouble()){
         System.out.println("Sucess");
