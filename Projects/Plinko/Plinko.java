@@ -65,11 +65,10 @@ class Plinko {
                         scan = new Scanner(System.in);
                             System.out.print("What starting position would you like the ball to be in? (0-8): ");
                             if(scan.hasNextInt()){
-                                position = scan.nextInt();
-                                if(position <= 9){
+                                int startingPosition = scan.nextInt();
+                                if(startingPosition <= 9){
                                 System.out.print("How many discs would you like to drop?: ");
                                 numbOfDisc = scan.nextInt();
-                                position = position * 2;  
                                     for(int i = 1; i <= numbOfDisc; i++){
                                         if(position == 16 ){
                                             position --;
@@ -84,6 +83,7 @@ class Plinko {
                                             position--;
                                         }                                  
                                         DISCPOSITION[position/2]++;
+                                        position = startingPosition * 2;  
                                     }      
                                 }
                                 for(int j = 0; j <= 8; j++){
