@@ -30,7 +30,7 @@ class Plinko {
                         System.out.print("What starting position would you like the ball to be in? (0-8): ");
                         if(scan.hasNextInt()){
                             position = scan.nextInt();
-                            if(position <= 9){
+                            if(position <= 8){
                                 position = position * 2;  
                                     PrintEvenRow(position);
                                     for(int i = 0; i <= 11; i++){
@@ -60,41 +60,43 @@ class Plinko {
                         }
                     }
                 else if(mode == MULTI_DISC) {
-                int[] DISCPOSITION = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+                int[] DISCPOSITION = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
                     while(true){
                         scan = new Scanner(System.in);
                             System.out.print("What starting position would you like the ball to be in? (0-8): ");
                             if(scan.hasNextInt()){
                                 int startingPosition = scan.nextInt();
-                                if(startingPosition <= 9){
+                                if(startingPosition <= 8){
                                 System.out.print("How many discs would you like to drop?: ");
                                 numbOfDisc = scan.nextInt();
-                                    for(int i = 1; i <= numbOfDisc; i++){
-                                        if(position == 16 ){
-                                            position --;
-                                        }                                       
-                                        else if (position == 0){
-                                            position++;
-                                        } 
-                                        else if(Math.random() > .5){
-                                            position++;
+                                    for(int j = 1; j <= numbOfDisc; j++){
+                                    position = startingPosition * 2;
+                                        for(int i = 0; i <= 11; i++){
+                                            if(position == 16 ){
+                                                position --;
+                                            }                                       
+                                            else if (position == 0){
+                                                position++;
+                                            } 
+                                            else if(Math.random() > .5){
+                                                position++;
+                                            }
+                                            else{
+                                                position--;
+                                            }                                  
                                         }
-                                        else{
-                                            position--;
-                                        }                                  
-                                        DISCPOSITION[position/2]++;
-                                        position = startingPosition * 2;  
-                                    }      
-                                }
-                                for(int j = 0; j <= 8; j++){
-                                System.out.println("Number of disc(s) landed on position " + j + ": "+ DISCPOSITION[j]);
+                                    DISCPOSITION[position/2]++; 
+                                    }
+                                    for(int j = 0; j <= 8; j++){
+                                    System.out.println("Number of disc(s) landed on position " + j + ": "+ DISCPOSITION[j]);      
                                 }
                             }
-                            score = (VALUES[0] * DISCPOSITION[0]) + (VALUES[1] * DISCPOSITION[1]) + (VALUES[2] * DISCPOSITION[2]) + (VALUES[3] * DISCPOSITION[3]) + (VALUES[4] * DISCPOSITION[4]) + (VALUES[5] * DISCPOSITION[5]) + (VALUES[6] * DISCPOSITION[6]) + (VALUES[7] * DISCPOSITION[7]) + (VALUES[8] * DISCPOSITION[8]);
-                            System.out.println("Score: " + score);
-                            break;
-                            }   
                         }
+                    score = (VALUES[0] * DISCPOSITION[0]) + (VALUES[1] * DISCPOSITION[1]) + (VALUES[2] * DISCPOSITION[2]) + (VALUES[3] * DISCPOSITION[3]) + (VALUES[4] * DISCPOSITION[4]) + (VALUES[5] * DISCPOSITION[5]) + (VALUES[6] * DISCPOSITION[6]) + (VALUES[7] * DISCPOSITION[7]) + (VALUES[8] * DISCPOSITION[8]);
+                    System.out.println("Score: " + score);
+                    break;
+                    }   
+                }
 
                 else if(mode == TERMINATE) {
                     System.out.println("Goodbye");
