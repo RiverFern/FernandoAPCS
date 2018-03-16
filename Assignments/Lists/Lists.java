@@ -1,7 +1,7 @@
-import java.util.* ;
 import java.util.Scanner;
+import java.util.* ;
 
-class Lists{ 
+class Lists { 
 
 public static final int ADD = 1;
 public static final int REMOVE = 2;
@@ -11,8 +11,7 @@ public static final int TERMINATE = 4;
 public static int mode = -1;
 
 public static int addindex = -1;
-public static int todolistitem = -1;
-public static ArrayList<Integer> toDoList = new ArrayList<Integer>();
+public static ArrayList<String> toDoList = new ArrayList<String>();
 
 public static void main(String[] args) {
     Scanner scan;
@@ -24,20 +23,20 @@ public static void main(String[] args) {
         if(scan.hasNextInt()) {
             mode = scan.nextInt();
             
-            if(mode == ADD) {     
+            if(mode == ADD) {
                 while(true){
                 scan = new Scanner(System.in);
                     System.out.print("What index would you like to add the item in?: ");
-                    if(scan.hasNextint()){
+                    if(scan.hasNextInt()){
                     addindex = scan.nextInt();
-                    System.out.print("Write the to do list item: ");
-                        if(scan.hasNextString()){
-                        todolistitem = scan.nextString();
-                        }
-                    toDoList.add(addindex, todolistitem);
+                    }
+                    if(scan.hasNext()){
+                    System.out.print("Write the to do list item:\t");
+                    String toDolistitem = scan.nextLine();
+                    toDoList.add(addindex, toDolistitem);
+                    break;
                     }
                 }
-            break;
             }
             else if(mode == REMOVE) {
                 while(true){
@@ -45,13 +44,13 @@ public static void main(String[] args) {
                     System.out.print("What index would you like to remove?: ");
                     if(scan.hasNextInt()){
                         int indexremove = scan.nextInt();
-                        todoList.remove(indexremove);
+                        toDoList.remove(indexremove);
                     }
                 }
             }
             else if (mode == VIEW){
                 for(int i = 0; i < toDoList.size(); i++) {
-                     System.out.println(numList.get(i));
+                     System.out.println(toDoList.get(i));
                 }
             }
             else if(mode == TERMINATE) {
@@ -65,12 +64,13 @@ public static void main(String[] args) {
 }
 
    public static void printModeStatement() {
+       System.out.println(toDoList);
         System.out.print(
-            "Select a mode:\n"
+            "Main Menu:\n"
             + "\t(1) Add an item\n"
             + "\t(2) Remove an item\n"
             + "\t(3) View List\n"
-            + "\t(4) Quit"
+            + "\t(4) Quit \n"
         );
     }
 }
