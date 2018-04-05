@@ -51,6 +51,7 @@ public static void main(String[] args) {
             else if (mode == VIEW){
                 for(int i = 0; i < toDoList.size(); i++) {
                      System.out.println(toDoList.get(i));
+                     System.out.println(spaces[]);
                 }
             }
             else if(mode == TERMINATE) {
