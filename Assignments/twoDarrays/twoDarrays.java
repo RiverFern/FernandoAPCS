@@ -60,25 +60,30 @@ class twoDarrays {
         //     }
         // }
 
-        int[][] mat = new int [3][3];
-        for(int i = 0; i < mat.length; i++){
-            for(int j = 0; j < mat[i].length; j++){
-                mat[i][j] = (i * 3) + (j + 1);
-                System.out.print(mat[i][j] + " ");
-            }
-            System.out.println();
-        }
-        reverseMatrix(mat);
-   }
+//         int[][] mat = new int [3][3];
+//         for(int i = 0; i < mat.length; i++){
+//             for(int j = 0; j < mat[i].length; j++){
+//                 mat[i][j] = (i * 3) + (j + 1);
+//                 System.out.print(mat[i][j] + " ");
+//             }
+//             System.out.println();
+//         }
+//         reverseMatrix(mat);
+//    }
   
-    public static int[][] reverseMatrix(int[][] mat){
-        int[][] result = mat;
-        for(int i = 0; i < mat.length; i++){
-            int[] row = mat[i];
-            System.out.println(row[i]);
-            for(int j = 0; j < mat[i].length; j++){
-            }
-        }
-        return result;
+   int[][] mat = new int [3][3];
+   int num0 = 2;
+   int num1 = 3;
+   int num2 = 5;
+   for(int i = 0; i < mat.length; i++){
+       for(int j = 0; j < mat[i].length; j++){
+           mat[0][j] = num0 * ((num0 * (j +1)); 
+           mat[1][j] = num1 * (j + 1); 
+           mat[2][j] = num2 * (j + 1);
+           System.out.print(mat[i][j] + " ");
+       }
+       System.out.println();
+   }
+   
     }
 }
