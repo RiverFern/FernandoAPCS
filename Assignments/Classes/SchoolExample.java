@@ -7,6 +7,10 @@ class SchoolExample{
     String fullname = jd.getfullname();
     System.out.println(fullname);
     System.out.println(jd.toString());
+    course cs = new course("Computer Science","Cs101","Mr,Merrell","B19");
+    System.out.println(cs.toString());
+    addCourse(cs);
+    printCourses();
     }
 }
 
